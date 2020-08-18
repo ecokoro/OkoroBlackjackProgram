@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Historical Statistics{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+
+<style>
+h1 {text-align: center;}
+p {text-align: center;}
+td {text-align: center;}
+</style>
+
+<table style="width:100%">
+	<tr>
+		<td>Date</td>
+		<td>Wins</td>
+		<td>Losses</td>
+		<td>Ties</td>
+		<td>Total Rounds</td>
+	</tr>
+	{% for stat in stats %}
+		<tr>
+			<td>{{stat[2]}}</td>
+			<td>{{stat[3]}}</td>
+			<td>{{stat[4]}}</td>
+			<td>{{stat[5]}}</td>
+			<td>{{stat[6]}}</td>
+		</tr>
+	{% endfor %}
+</table>
+
+<form method="POST">
+	<table style="width:100%">
+	    <td>
+	      <input type="submit" name="play" value="Play New Game">
+	    </td>
+
+	    <td>
+	    	<input type="submit" name="logout" value="Log Out">
+	    </td>
+	</table>
+</form>
+
+{% endblock %}
+
+
+
+
+

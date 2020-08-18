@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h1>{% block title %}Result{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<html>
+<body>
+
+<h3 style="text-align:left;">
+
+    DEALER
+
+    <span style="float:right;">
+
+        PLAYER
+
+    </span>
+    
+</h3>
+<table style="width:100%">
+  <tr>
+
+    
+    <td> 
+    {% for card in session['dealerHand'] %}
+      <img src="{{url_for('static', filename=(card[0] + '_' + card[1] + '.jpg'))}}"; style="height:200px;">
+     
+    {% endfor %}
+      </td>
+    <td>
+    {% for card in session['playerHand'] %}
+      <img src="{{url_for('static', filename=(card[0] + '_' + card[1] + '.jpg'))}}"; style="height:200px;">
+      
+      {% endfor %}
+    </td>
+    
+  </tr>
+
+
+ <tr>
+    <td style="color:	#c76fb5; font-size:160%">
+    	Dealer Total: {{session['dealerHandValue']}} </td>
+   	
+   	<td style="color:	#c76fb5; font-size:160%">
+    	Player Total: {{session['playerHandValue']}}</td>
+</tr>
+
+</table>
+<h2 style="text-align:left;">
+
+  
+    </span>
+{% if session['gameResult'] == 'playerBust' %}
+<p id="para1"> Argh..., you lost! You went over 21!</p>
+{% endif %}
+
+{% if session['gameResult'] == 'dealerBust' %}
+<p id="para2">Dealer busted..., you win!</p>
+{% endif %}
+
+{% if session['gameResult'] == 'playerWin' %}
+<p id="para2">Good job..., you won!</p>
+{% endif %}
+
+{% if session['gameResult'] == 'playerBlackjack' %}
+<p id="para3">Congratulations, you got blackjack!</p>
+{% endif %}
+
+{% if gameResult == 'dealerBlackjack' %}
+<p id="para5">Dealer got a blackjack...you lose.</p>
+{% endif %}
+
+{% if session['gameResult'] == 'playerLoss' %}
+<p id="para4">Argh..., you lost!</p>
+{% endif %}
+
+{% if session['gameResult'] == 'tie' %}
+<p id="para5">That was tough..., It's a tie!</p>
+{% endif %}
+
+<style>
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+</style>
+
+<form method="post">
+<div class="center">
+<p><input type="submit" name="playAgain" value="Start New Game"></p>
+</form>
+
+</div>
+
+{% endblock %}

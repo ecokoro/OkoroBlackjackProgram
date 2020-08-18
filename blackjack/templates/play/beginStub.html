@@ -1,0 +1,38 @@
+
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Begin Play{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<style>
+h1 {text-align: center;}
+p {text-align: center;}
+td {text-align: center;}
+</style>
+<body>
+
+{% if g.user %}
+	<p style="font-size:260%"> Welcome, {{ g.user[1] }}!
+{% endif %}
+
+<form method="POST">
+  <table style="width:100%">
+    <td>
+      <input type="submit" name="newGame" value="Play New Game">
+    </td>
+    <td>
+      <input type="submit" name='statistics' value="See my Historical Statistics">
+    </td>
+  </table>
+</form>
+
+
+
+{% endblock %}
+
+
+
+
+

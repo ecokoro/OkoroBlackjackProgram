@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+
+<title>{% block title %}{% endblock %} - EmmanuelOkoro Blackjack</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+<nav>
+  <h1>OKORO Blackjack Game</h1>
+
+<style>
+table.center {
+  margin-left:auto; 
+  margin-right:auto;
+  }
+
+</style>
+
+<table class="center">
+ <tr>
+  	<th>Session ID:</th>  	
+  	<th>User ID:</th>  	
+  	<th>Date:</th>
+    <th>Wins:</th>
+    <th>Losses:</th>
+    <th>Ties:</th>
+    <th>Total Rounds:</th>
+  </tr>
+  <tr>
+    <td style="color:	#c76fb5;">0</td>
+    <td style="color:	#c76fb5;">0</td>
+    <td style="color:	#c76fb5;">0</td>
+    <td style="color:	#c76fb5;">{{session['wins']}}</td>
+    <td style="color:	#c76fb5;">{{session['losses']}}</td>
+    <td style="color:	#c76fb5;">{{session['ties']}}</td>
+    <td style="color:	#c76fb5;">0</td>
+  </tr>
+  
+</table>
+ 
+  
+  <ul>
+    {% if g.user %}
+      <li><span>{{ g.user['1'] }}</span>
+      <li><a href="{{ url_for('auth.logout') }}">Log Out</a>
+     
+    
+    {% else %}
+      <li><a href="{{ url_for('auth.register') }}">Register</a>
+      <li><a href="{{ url_for('auth.login') }}">Log In</a>
+    {% endif %}
+  </ul>
+</nav>
+
+<body>
+    <div id="content">
+
+
+  {% for message in get_flashed_messages() %}
+    <div class="flash">{{ message }}</div>
+  {% endfor %}
+
+
+  {% block content %}
+
+<style>
+    background: url("{{ url_for('static',filename='img/blackjack2.jpeg') }}") no-repeat 0px 0px;
+</style>
+
+</body>
+</html>
+
+    {% endblock %}

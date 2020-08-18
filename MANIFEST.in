@@ -1,0 +1,4 @@
+include blackjack/schema.sql
+graft blackjack/static
+graft blackjack/templates
+global-exclude *.pyc

@@ -1,0 +1,105 @@
+
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Current Game Result{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<body>
+
+<style>
+h1 {text-align: center;}
+p {text-align: center;}
+td {text-align: center;}
+</style>
+
+<table style="width:100%">
+  <tr>
+    <th>Player's Cards</th>
+    <th>Dealer's Cards</th> 
+  </tr>
+
+  <tr>
+    <td>
+      {% for card in playerHand %}
+      <img src="{{url_for('static', filename=(card[0] + '_' + card[1] + '.jpg'))}}"; style="height:200px;">
+      {% endfor %}
+    </td>
+
+    <td>
+      {% for card in dealerHand %}
+      <img src="{{url_for('static', filename=(card[0] + '_' + card[1] + '.jpg'))}}"; style="height:200px;">
+      {% endfor %}
+    </td>
+
+  </tr>
+
+  <tr>
+    <td style="color:#0033cc; font-size:160%">
+      Player Total: {{playerHandValue}}
+    </td>
+    <td style="color:#0033cc; font-size:160%">
+      Dealer Total: {{dealerHandValue}}
+    </td>
+  </tr>
+
+</table>
+
+<p style="font-size:260%">
+
+{% if gameResult == 'playerBust' %}
+  You busted. Dealer wins!
+{% endif %}
+{% if gameResult == 'dealerBust' %}
+  Dealer busted...you win!
+{% endif %}
+{% if gameResult == 'playerBlackjack' %}
+  You got a Blackjack...you win!
+{% endif %}
+{% if gameResult == 'dealerBlackjack' %}
+  Dealer got a blackjack...you lose.
+{% endif %}
+{% if gameResult == 'playerWin' %}
+  You win!
+{% endif %}
+{% if gameResult == 'playerLoss' %}
+  You lose.
+{% endif %}
+{% if gameResult == 'tie' %}
+  Hmm...you and the dealer tied.
+{% endif %}
+
+</p>
+
+
+<form method="POST">
+  <table style="width:100%">
+    <td>
+      <input type="submit" name='playAgain' value="Play Again">
+    </td>
+    <td>
+      <input type="submit" name='statistics' value="See my Historical Statistics">
+    </td>
+    <td>
+      <input type="submit" name='logout' value="Log Out">
+    </td>
+  </table>
+</form>
+
+<p><u> Testing Info:</u>
+<p><b>Size of Deck</b>
+<br>{{deckSize}}
+
+<p><b>Cards in Deck (dealt from the back):</b> 
+<br>{{gameDeck}}
+
+
+</body>
+
+{% endblock %}
+
+
+
+
+

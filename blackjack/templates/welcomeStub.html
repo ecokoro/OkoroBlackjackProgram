@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Welcome{% endblock %}</h1>
+{% endblock %}
+
+
+{% block content %}
+<body>
+
+<style>
+h1 {text-align: center;}
+p {text-align: center;}
+td {text-align: center;}
+</style>
+
+<table style="width:100%">
+  <form method="Post">
+    <td>
+      <input type="submit" name="existingUser" value="Existing User">
+    </td>
+    <td>
+      <input type="submit" name="newUser" value="New User">
+    </td>
+  </form>
+</table>
+
+
+
+ 
+</body>
+{% endblock %}

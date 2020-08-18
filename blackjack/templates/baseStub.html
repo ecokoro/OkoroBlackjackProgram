@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<title>{% block title %}{% endblock %} - Blackjack</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+<nav>
+  <h1><a href="{{url_for('play.begin')}}">Blackjack</a></h1>
+  <p style="color:blue;"><b><i>Current Session Stats:</i> 
+  Wins: {{session['wins']}} Losses: {{session['losses']}}   Ties: {{session['ties']}} </b></p>
+  
+  <ul>
+    {% if g.user %}
+      <li><span>{{ g.user[1] }}</span>
+      <li><a href="{{ url_for('auth.logout') }}">Log Out</a>
+    {% else %}
+      <li><a href="{{ url_for('auth.register') }}">Register</a>
+      <li><a href="{{ url_for('auth.login') }}">Log In</a>
+    {% endif %}
+  </ul>
+</nav>
+
+<section class="content">
+  <header>
+    {% block header %}{% endblock %}
+  </header>
+  {% for message in get_flashed_messages() %}
+    <div class="flash">{{ message }}</div>
+  {% endfor %}
+  {% block content %}
+<style>body {
+  background-image: url({{ url_for('static', filename='blackjack2.jpeg') }});
+}
+</style>
+  {% endblock %}
+</section>
+

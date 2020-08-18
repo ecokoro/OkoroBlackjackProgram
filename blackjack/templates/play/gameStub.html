@@ -1,0 +1,85 @@
+
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Current Game{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+
+<body>
+
+<style>
+h1 {text-align: center;}
+p {text-align: center;}
+td {text-align: center;}
+</style>
+
+
+
+<table style="width:100%">
+  <tr>
+    <th>Player's Cards</th>
+    <th>Dealer's Cards (We'll hide the 1st card.)</th> 
+  </tr>
+
+
+  <tr>
+    <td>
+      {% for card in playerHand %}
+      <img src="{{url_for('static', filename=(card[0] + '_' + card[1] + '.jpg'))}}"; style="height:200px;">
+      {% endfor %}
+    </td>
+
+    <td>
+      <img src="{{url_for('static', filename='CardBack.jpg')}}"; style="height:200px;">
+      {% for card in dealerHand[1:] %}
+      <img src="{{url_for('static', filename=(card[0] + '_' + card[1] + '.jpg'))}}"; style="height:200px;">
+      {% endfor %}
+    </td>
+  </tr>
+
+  
+  <tr>
+    <td style="color:#0033cc; font-size:160%">
+      Player Total: {{playerHandValue}}</td>
+    <td style="color:#0033cc; font-size:160%">
+      Dealer Total: {{dealerHandValue}} (We'll hide this.)</td>
+  </tr>
+
+</table>
+
+<p style="font-size:260%">
+What do you want to do next?
+</p>
+
+
+
+
+
+<table style="width:100%">
+  <form method="POST">
+  <td><input type="submit" name='hit' value="Hit"></td>
+  <td><input type="submit" name='stand' value="Stand"></td>
+  </form>
+</td>
+</table>
+
+
+<p><u> Testing Info:</u>
+<p><b>Size of Deck</b>
+<br>{{deckSize}}
+
+<p><b>Cards in Deck (dealt from the back):</b> 
+<br>{{gameDeck}}
+
+
+</body>
+
+
+{% endblock %}
+
+
+
+
+

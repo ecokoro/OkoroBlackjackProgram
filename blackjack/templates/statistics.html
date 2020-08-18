@@ -1,0 +1,45 @@
+ {% extends 'base.html' %}
+ 
+
+{% block title %}Historical Statistics{% endblock %}
+
+{% block content %}
+<style>
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+
+</style>
+
+<table style="width:100%">
+	<tr>
+		<td>Date</td>
+		<td>Wins</td>
+		<td>Losses</td>
+		<td>Ties</td>
+		<td>Total Rounds</td>
+	</tr>
+	{% for stat in stats %}
+		<tr>
+			<td>{{stat[2]}}</td>
+			<td>{{stat[3]}}</td>
+			<td>{{stat[4]}}</td>
+			<td>{{stat[5]}}</td>
+			<td>{{stat[6]}}</td>
+		</tr>
+	{% endfor %}
+</table>
+</body>
+
+
+<form method="post">
+<div class="center">
+<p><input type="submit" name="play" value="Play New Game"></p>	
+</form>
+
+</div>
+</html>
+{% endblock %}
